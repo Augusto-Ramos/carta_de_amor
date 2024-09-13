@@ -62,3 +62,31 @@ document.getElementById('playMusic').addEventListener('click', function () {
       console.error('Erro ao reproduzir a música:', error);
     });
 });
+
+window.onload = function () {
+  const playButton = document.getElementById('playMusic');
+  const audio = document.getElementById('audio');
+
+  if (!audio) {
+    console.error('Elemento de áudio não encontrado.');
+    return;
+  }
+
+  playButton.addEventListener('click', function () {
+    const shouldPlay = confirm('Deseja reproduzir a música?');
+
+    if (shouldPlay) {
+      audio.volume = 0.5; // Define o volume
+      audio
+        .play()
+        .then(() => {
+          console.log('Música reproduzida com sucesso!');
+        })
+        .catch((error) => {
+          console.error('Erro ao reproduzir a música:', error);
+        });
+    } else {
+      console.log('O usuário optou por não reproduzir a música.');
+    }
+  });
+};
