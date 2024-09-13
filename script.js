@@ -51,19 +51,14 @@ function createHeart() {
 // Gera corações a cada 300ms
 setInterval(createHeart, 2000);
 
-// Executa o código quando o DOM estiver totalmente carregado
-document.addEventListener('DOMContentLoaded', function () {
-  // Pergunta ao usuário no console se ele deseja reproduzir a música
-  const playMusic = confirm('Você deseja reproduzir a música?');
-
-  // Seleciona o elemento de áudio
-  const audio = document.getElementById('myAudio');
-
-  // Verifica a resposta do usuário
-  if (playMusic) {
-    audio.play(); // Inicia a reprodução da música
-    console.log('Música começou a tocar');
-  } else {
-    console.log('Usuário optou por não tocar a música.');
-  }
+document.getElementById('playMusic').addEventListener('click', function () {
+  const audio = document.getElementById('audio');
+  audio
+    .play()
+    .then(() => {
+      console.log('Música reproduzida com sucesso!');
+    })
+    .catch((error) => {
+      console.error('Erro ao reproduzir a música:', error);
+    });
 });
